@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="" href="{% static 'login/css/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    </head>
+    <body class="container" style="background-size:cover;background-repeat:no-repeat; background-image:url('https://images.pexels.com/photos/311039/pexels-photo-311039.jpeg?h=350&auto=compress&cs=tinysrgb')">
+        <div class="row" id="logReg">
+            <div class="col s12 m5">
+                <div class="card blue-grey hoverable">
+                    <div class="card-content white-text">
+                        <span class="card-title">Register</span>
+                        <form method="post" action="{%url 'login:processReg'%}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <input name="first_name"type="text" id="first_name" class="validate">
+                                    <label for="first_name">First Name:</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <input name="last_name"type="text" id="last_name" class="validate">
+                                    <label for="last_name">Last Name:</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input name="email" type="text" class="validate {% if not status %} invalid {% endif %}">
+                                    <label for="email" {% if not status %} data-error="{{errors.email}}" {% endif %}>Email:</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <input name="password" type="password" class="validate">
+                                    <label for="password">Password:</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <input name="confirm" type="password" class="validate">
+                                    <label for="confirm">Confirm Password:</label>
+                                </div>
+                            </div>
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Register
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </form> 
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m5 offset-m1">
+                <div class="card blue-grey hoverable">
+                    <div class="card-content white-text">
+                        <span class="card-title">Login</span>
+                         <form method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input name="email" type="email" class="validate">
+                                    <label for="email">Email:</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input name="password"type="password" class="validate">
+                                    <label for="password">Password:</label>
+                                </div>
+                            </div>
+                            <div class="center-align">
+                               <button class="btn waves-effect waves-light center-align" type="submit" name="action">Login
+                                <i class="material-icons right">send</i>
+                            </button>  
+                            </div>
+                           
+                        </form> 
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </body>
+</html>
+
+

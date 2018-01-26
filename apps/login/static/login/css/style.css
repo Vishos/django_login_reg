@@ -1,0 +1,38 @@
+  /* label color */
+ .card-title{
+   color: gold;
+ }
+
+   /* label color */
+   #logReg .input-field label{
+     color: #fff;
+   }
+   /* invalid label color */
+   #logReg .input-field input[type=text].invalid + label{
+     color: #ff9e80;
+   }
+   /* invalid label focus color */
+    #logReg .input-field input[type=text].invalid input:focus + label{
+     color: gold;
+   }
+   /* label focus color */
+  body #logReg .input-field input:focus + label {
+     color: gold;
+   }
+   /* label underline focus color */
+   #logReg .input-field input:focus {
+     border-bottom: 1px solid gold;
+     box-shadow: 0 1px 0 0 gold;
+   }
+
+
+  /* invalid color */
+   #logReg .input-field input[type=text].invalid {
+     border-bottom: 1px solid #ff9e80;
+     box-shadow: 0 1px 0 0 #ff9e80;
+   }
+
+   /* invalid + label focus color */
+  #logReg .input-field .invalid + label:after{
+     color: #ff9e80;
+   }
