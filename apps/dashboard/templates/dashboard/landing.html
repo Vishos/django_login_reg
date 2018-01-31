@@ -11,6 +11,13 @@
         <h1>Hello {{request.session.user_id}}--</h1>
         <p>Here are the existing users</p>
         <a href="/logout">Log Out Now!!</a>
+        <p>You've been poked  {{frienemies.count}} times</p>
+        <ul>
+            {%for poke in frienemies%}
+            <li>{{poke.poke_sender.first_name}} poked you {{poke.count}} times...</li>
+            {% endfor %}
+        </ul>
+
        <table>
            <thead>
                <tr>
@@ -26,9 +33,9 @@
                <td>{{user.first_name}}</td>
                <td>{{user.last_name}}</td>
                <td>{{user.email}}</td>
-               <td>Poke history goes here</td>
+               <td>{{user.num_pokes}}</td>
                <td>
-                   <form action="/dashboard/createPoke" method="POST">
+                   <form action="/dashboard/createPoke" method="PoSt">
                        {% csrf_token %}
                        <input type="hidden" name="poke_receiver" value="{{user.id}}">
                        <input type="submit" value="POKE!">
