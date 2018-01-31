@@ -7,7 +7,7 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Hello --</h1>
+        <h1>Hello {{request.session.user_id}}--</h1>
         <p>Here are the existing users</p>
         <ul>
             {% for user in users %}
