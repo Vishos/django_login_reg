@@ -17,3 +17,7 @@ def processLog(request):
 	print "process log"
 	request.session['user_id']=User.objects.get(email=request.POST['email']).id
 	return redirect('/dashboard/')
+
+def logout(request):
+    request.session.flush()
+    return redirect('/')
