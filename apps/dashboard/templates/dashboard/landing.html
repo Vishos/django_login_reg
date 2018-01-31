@@ -4,7 +4,8 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
     </head>
     <body>
         <h1>Hello {{request.session.user_id}}--</h1>
@@ -35,6 +36,26 @@
            </tr>
            {% endfor %}
 
+       </table>
+
+
+       <table>
+           <thead>
+                <tr>
+                    <th>poke id</th>
+                    <th>poke sender</th>
+                    <th>poke receiver</th>
+                    <th>poke count</th>
+                </tr>
+           </thead>
+           {% for poke in all_pokes %}
+           <tr>
+               <td>{{poke.id}}</td>
+               <td>{{poke.poke_sender.first_name}}</td>
+               <td>{{poke.poke_receiver.first_name}}</td>
+               <td>{{poke.count}}</td>
+           </tr>
+           {% endfor %}
        </table>
 
     </body>
