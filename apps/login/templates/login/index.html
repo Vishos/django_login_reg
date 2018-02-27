@@ -20,8 +20,8 @@
                             {% csrf_token %}
                             <div class="row">
                                 <div class="input-field col s12 m6">
-                                    <input name="first_name"type="text" id="first_name" class="validate">
-                                    <label for="first_name">First Name:</label>
+                                    <input name="first_name"type="text" id="first_name" class="validate {% if errors.first_name %} invalid {% endif %}">
+                                    <label for="first_name" data-error="{{errors.first_name}}">First Name:</label>
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <input name="last_name"type="text" id="last_name" class="validate">
@@ -30,8 +30,8 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input name="email" type="text" class="validate {% if not status %} invalid {% endif %}">
-                                    <label for="email" {% if not status %} data-error="{{errors.email}}" {% endif %}>Email:</label>
+                                    <input name="email" type="text" class="validate {% if errors.email %} invalid {% endif %}">
+                                    <label for="email" data-error="{{errors.email}}">Email:</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -59,8 +59,8 @@
                             {% csrf_token %}
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input name="email" type="email" class="validate">
-                                    <label for="email">Email:</label>
+                                    <input name="email" type="email" class="validate {% if errors.login %} invalid {% endif %}">
+                                    <label for="email" data-error="{{errors.login}}">Email:</label>
                                 </div>
                             </div>
                             <div class="row">

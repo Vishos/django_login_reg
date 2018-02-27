@@ -6,17 +6,24 @@ def index(request):
     return render(request, "login/index.html", {'status':True})
 
 def processReg(request):
-    confirm = request.POST['confirm']
-    response = User.objects.validate(request.POST)
+    response = User.objects.register(request.POST)
     if not response['status']:
         return render(request, "login/index.html", response)
     request.session['user_id']=response['user'].id
-    return redirect(reverse('dashboard:landing'))
+    return redirect('/success')
 
 def processLog(request):
-	print "process log"
-	request.session['user_id']=User.objects.get(email=request.POST['email']).id
-	return redirect('/dashboard/')
+    response = User.objects.login(request.POST)
+    if not response['status']:
+        return render(request, 'login/index.html', response)
+    
+    request.session['user_id']=response['user'].id
+    
+    return redirect('/success')
+
+def success(request):
+    return render(request, 'login/success.html')
+
 
 def logout(request):
     request.session.flush()

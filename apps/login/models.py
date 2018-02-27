@@ -1,18 +1,18 @@
 from __future__ import unicode_literals
-
+from datetime import datetime
 from django.db import models
 
 # Create your models here.
 
 class UserManager(models.Manager):
-    def validate(self, postData):
+    def register(self, postData):
         errors = {}
         response = {
             'status' : True,
         }
         if len(postData['first_name']) < 3:
-            errors['first_name'] = "please enter a longer name"
-        if len(postData['email']) < 1:
+            errors['first_name'] = "First Name must be at least 3 characters"
+        if len(postData['email']) < 3:
             errors['email'] = "email needs to be supplied"
         else:
             existing = User.objects.filter(email = postData['email'].lower())
@@ -32,6 +32,20 @@ class UserManager(models.Manager):
 
         return response
 
+    def login(self, postData):
+        response = {
+            'status' : False,
+            'errors' : {'login' : 'incorect email / password'}
+        }
+        existing = self.filter(email=postData['email'])
+        if len(existing) > 0:
+            if postData['password'] == existing[0].password:
+                response['user']=existing[0]
+                response['status'] = True
+
+        return response
+            
+
 class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -40,3 +54,5 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
+
+

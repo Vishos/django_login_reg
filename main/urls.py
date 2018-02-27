@@ -18,6 +18,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^', include('apps.login.urls', namespace="login")),
-    url(r'^dashboard/', include('apps.dashboard.urls', namespace="dashboard")),
     url(r'^admin/', admin.site.urls),
 ]
